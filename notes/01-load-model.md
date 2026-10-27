@@ -1,5 +1,7 @@
 # 01: Loading the base model + a baseline test
 
+*Concepts like Hugging Face, `transformers`, and why fine-tuning matters are covered once in [`00-concepts.md`](00-concepts.md) — this note stays focused on what I actually built in this part.*
+
 ## What I did
 
 Before touching fine-tuning at all, I wanted to see exactly how bad the base model is at answering questions about my own projects — no training, just the raw model straight from Hugging Face. That's my baseline to compare against later.
