@@ -26,5 +26,5 @@ finetune-practice/
 | — | Concepts (Hugging Face, fine-tuning vs. RAG, LoRA) | — | [`notes/00-concepts.md`](notes/00-concepts.md) |
 | 1 | Load the base model + a real pre-finetune baseline | [`code/01_load_model.py`](code/01_load_model.py) | [`notes/01-load-model.md`](notes/01-load-model.md) |
 | 2 | Prepare the dataset (real Q&A → the model's chat format) | [`code/02_prepare_dataset.py`](code/02_prepare_dataset.py) | [`notes/02-prepare-dataset.md`](notes/02-prepare-dataset.md) |
-| 3 | Fine-tune with LoRA | [`code/03_finetune.py`](code/03_finetune.py) | _in progress_ |
+| 3 | Fine-tune with LoRA | [`code/03_finetune.py`](code/03_finetune.py) | [`notes/03-finetune.md`](notes/03-finetune.md) |
 | 4 | Test the fine-tuned model, compare to the baseline | [`code/04_test_finetuned.py`](code/04_test_finetuned.py) | _not started_ |
