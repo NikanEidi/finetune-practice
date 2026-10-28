@@ -140,6 +140,10 @@ trainable params: 540,672 || all params: 494,573,440 || trainable%: 0.1093
 
 The adapter is trained and saved. It hasn't actually been *tested* yet — part 04 loads the base model, attaches this adapter, and asks it the same "What is LedgerLite?" question from part 01's baseline, to see side by side whether the hallucination is actually gone.
 
+## Update — this config turned out to be too weak
+
+Part 04 showed this specific adapter (`r=8`, only `q_proj`/`v_proj`, 5 epochs) didn't actually make the model recall my real answers — it shifted the model's tone but not its facts. `03_finetune.py` on disk now reflects a stronger config (`target_modules` expanded to 7 projections, `num_train_epochs=15`) that did work. The full story — what I tried, why it failed, and the one change that actually fixed it — is in [`05-tuning-journey.md`](05-tuning-journey.md). This note stays as-is since it's the honest first attempt, not rewritten to look like I got it right the first time.
+
 ## One-line interview answer
 
 > "I trained a LoRA adapter on 20 real examples for 5 epochs — loss dropped from 15 to under 1 in 75 seconds on my laptop's GPU, and the saved adapter was only 2.1MB because LoRA only trains about 0.1% of the model's parameters, not the whole thing."

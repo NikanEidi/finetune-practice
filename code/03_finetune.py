@@ -47,11 +47,11 @@ tokenized_dataset = dataset.map(tokenize)
 
 # the LoRA adapter settings — small trainable layers on top of the frozen model
 lora_config = LoraConfig(
-    r=8,                               # adapter size (rank)
-    lora_alpha=16,                     # scaling factor, usually 2x r
-    target_modules=["q_proj", "v_proj"],  # attach the adapter to these attention layers
-    lora_dropout=0.05,                 # randomly drop 5% during training to avoid overfitting
-    task_type="CAUSAL_LM",             # tells peft this is a next-token-prediction model
+    r=8,
+    lora_alpha=16,
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+    lora_dropout=0.05,
+    task_type="CAUSAL_LM",
 )
 
 # wrap the base model with the LoRA adapter — base weights stay frozen
@@ -62,11 +62,11 @@ model.print_trainable_parameters()
 # how the training loop itself should run
 training_args = TrainingArguments(
     output_dir="./lora_output",
-    num_train_epochs=5,            # see all 20 examples 5 times, dataset is tiny
-    per_device_train_batch_size=2,  # 2 examples at a time
-    learning_rate=2e-4,            # how fast the adapter weights move each step
-    logging_steps=1,               # print the loss after every single step
-    save_strategy="no",            # no mid-training checkpoints, dataset is tiny and fast
+    num_train_epochs=15,
+    per_device_train_batch_size=2,
+    learning_rate=2e-4,
+    logging_steps=1,
+    save_strategy="no",
 )
 
 # tie model + training settings + data together
